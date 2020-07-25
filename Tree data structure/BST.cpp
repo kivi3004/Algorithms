@@ -2,6 +2,7 @@
    1. INSERTION
    2. DELETION
    3. TRAVERSE
+   4. SEARCH
    */
 
 #include <bits/stdc++.h>
