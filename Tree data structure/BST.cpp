@@ -209,6 +209,32 @@ void traversepost(Node *head)
     }
 }
 
+bool searchRecursive(Node* head, int data){
+    if(head==NULL){
+        return false;
+    }
+    if(head->val == data)
+        return true;
+    if(head->val > data)
+        return searchRecursive(head->left, data);
+    else
+        return searchRecursive(head->right, data);
+    
+}
+
+bool searchIterative(Node* head, int data){
+    if(head == NULL)
+        return false;
+    while(head){
+        if(head->val == data)
+            return true;
+        if(head->val > data)
+            head = head->left;
+        else
+            head = head->right;
+    }
+    return false;
+}
 int main()
 {
     Node *head = NULL;
@@ -221,8 +247,10 @@ int main()
         cout << "2. Insertion through Iteration\n";
         cout << "3. Deletion through recusion\n";
         cout << "4. Deletion through Iteration\n";
-        cout << "5. Traverse\n";
-        cout << "6. exit(0)\n";
+        cout << "5. Search through recursion\n";
+        cout << "6. Serach through Iteration\n";
+        cout << "7. Traverse\n";
+        cout << "8. exit(0)\n";
         cin >> ch;
         int x;
         switch (ch)
@@ -248,6 +276,24 @@ int main()
             head = deleteIterative(head, x);
             break;
         case 5:
+            cout<<"Enter value : ";
+            cin>>x;
+            if(searchRecursive(head, x))
+                cout<<x<<" is found"<<endl;
+            else
+                cout<< x << " is not found"<<endl; 
+            cout<<endl;           
+            break;
+        case 6:
+            cout<<"Enter value : ";
+            cin>>x;
+            if(searchIterative(head, x))
+                cout<<x<<" is found"<<endl;
+            else
+                cout<< x << " is not found"<<endl;    
+            cout<<endl;        
+            break;
+        case 7:
             cout<<"\nInorder : ";
             traverseIn(head);
             cout<<"\nPreorder : ";
@@ -258,7 +304,7 @@ int main()
             traverseLevelByLevel(head);
             cout<<endl;
             break;
-        case 6:
+        case 8:
             exit(0);
         default:
             cout << "ERROR";
