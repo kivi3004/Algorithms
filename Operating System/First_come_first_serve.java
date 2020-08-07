@@ -1,5 +1,4 @@
 
-import java.text.ParseException;
 import java.util.Scanner;
 class First_come_first_serve {
     static void findWaitingTime(int processes[], int n, int bt[], int wt[]) {
@@ -48,7 +47,7 @@ class First_come_first_serve {
     }
 
     // Driver code
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int processes[] = new int[n];
