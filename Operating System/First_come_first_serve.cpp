@@ -46,7 +46,7 @@ int main()
         else
         {
             int j = pro.size() - 1;
-            while (j >= 0 && pro[j][1] >= v[1])   /*Sorting Processes according to arrival time*/
+            while (j >= 0 && pro[j][1] > v[1])   /*Sorting Processes according to arrival time*/
                 j--;
             pro.insert(begin(pro) + j + 1, v);
         }
