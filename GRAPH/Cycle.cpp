@@ -1,26 +1,30 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-bool check(vector<int> graph[], int u, vector<bool>& visit){
-    for(int i=0; i<graph[u].size(); i++){
-        if(visit[graph[u][i]])
+bool check(vector<int> graph[], int v, int u, vector<bool>& visit){
+    visit[v] = true;
+    for(int k : graph[v]){
+        if(!visit[k]){
+            if(check(graph, k, v, visit))
+                return true;
+        }
+        else if(k!=u)
             return true;
-        visit[graph[u][i]] = true;
-        bool res = check(graph, graph[u][i], visit);
-        if(res)
-            return true;
-        visit[graph[u][i]] = false;
     }     
     return false;    
 }
-bool cycle(vector<int> graph[], int u, int n){
+bool cycle(vector<int> graph[], int n){
     vector<bool> visit(n,false);
-    visit[u]=true;
-    return check(graph, u, visit);
+    for(int i=0; i<n; i++){
+        if(!visit[i] && check(graph, i, -1, visit))
+            return true;
+    }
+    return false;
 }
 
 void add_edge(vector<int> graph[], int u, int v){
     graph[u].push_back(v);
+    graph[v].push_back(u);
 }
 
 void print(vector<int> graph[], int n){
@@ -28,7 +32,7 @@ void print(vector<int> graph[], int n){
     for(int i=0; i<n; i++){
         cout<<i;
         for(int v : graph[i])
-            cout<<" ->"<<v;
+            cout<<" -> "<<v;
         cout<<endl;
     }
 }
@@ -49,17 +53,12 @@ int main(){
         cin>>ch;
     }
     print(graph,n);
-    int i;
-    for(i=0; i<n; i++)
-        if(cycle(graph, i, n)){
-            cout<<i<<"YES"<<endl;
-            break;
-        }
-    if(i==n)
-        cout<<"false";
+    if(cycle(graph, n))
+        cout<<"Cycle Possible";
     else
-        cout<<"true";
+    {
+        cout<<"Cycle doesn't exist";
+    }
     
-    
-
+      
 }
