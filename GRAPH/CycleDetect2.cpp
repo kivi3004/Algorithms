@@ -1,3 +1,6 @@
+/*Directed Graph*/
+
+
 bool isCycle(int V, vector<int> adj) 
 { 
     vector<int> in_degree(V, 0); 
@@ -22,4 +25,39 @@ bool isCycle(int V, vector<int> adj)
         return true; 
     else
         return false; 
+} 
+
+
+/*Undirected Graph*/
+
+bool isCyclicConntected(vector<int> adj[], int s, int V, vector<bool>& visited) 
+{ 
+    // Set parent vertex for every vertex as -1. 
+    vector<int> parent(V, -1);
+    queue<int> q; 
+    visited[s] = true; 
+    q.push(s); 
+    while (!q.empty()) { 
+        int u = q.front(); 
+        q.pop();
+        for (auto v : adj[u]) { 
+            if (!visited[v]) { 
+                visited[v] = true; 
+                q.push(v); 
+                parent[v] = u; 
+            } 
+            else if (parent[u] != v) 
+                return true; 
+        } 
+    } 
+    return false; 
+} 
+  
+bool isCyclic(vector<int> adj[], int V) 
+{ 
+    vector<bool> visited(V, false); 
+    for (int i = 0; i < V; i++) 
+        if (!visited[i] && isCyclicConntected(adj, i, V, visited)) 
+            return true; 
+    return false; 
 } 
