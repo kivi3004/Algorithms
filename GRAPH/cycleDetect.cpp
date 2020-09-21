@@ -53,7 +53,7 @@ int main(){
         if(cycle(graph, i, n))
             break;
     if(i==n)
-        cout<<"false";
+        cout<<"Cycle Doesn't Exist";
     else
-        cout<<"true";
+        cout<<"Cycle Exist";
 }
