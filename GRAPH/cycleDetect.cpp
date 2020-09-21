@@ -8,7 +8,7 @@ bool check(vector<int> graph[], int u, vector<bool>& visit){
         visit[graph[u][i]] = true;
         if(check(graph, graph[u][i], visit))
             return true;
-        visit[graph[u][i]] = false;
+        visit[graph[u][i]] =false;
     }     
     return false;    
 }
