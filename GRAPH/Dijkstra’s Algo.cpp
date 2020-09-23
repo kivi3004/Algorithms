@@ -1,3 +1,37 @@
+/* GFG solution 
+
+int minDist(vector<int> dist, vector<bool> visit, int n){
+    int min = INT_MAX;
+    int min_ind;
+    for(int i=0; i<n; i++)
+        if(!visit[i] & min >= dist[i]){
+            min = dist[i];
+            min_ind = i;
+        }
+    return min_ind;
+}
+void Dijkstra(vector<pair<int, int>> graph[], int src, int n){
+    vector<int> dist(n,INT_MAX);
+    vector<bool> visit(n,false);
+    dist[src] = 0;
+    for(int i=0; i<n; i++){
+        int u = minDist(dist, visit, n);
+        visit[u] = true;
+        if(visit[u]!=INT_MAX){
+            for(auto v : graph[u])
+                if(!visit[v.first] && (dist[u] + v.second)<dist[v.first]){
+                    dist[v.first] = v.second+dist[u];
+                }
+        }
+    }
+    cout<<endl;
+    cout<<"Distance of all vertex from "<<src<<" is : ";
+    for(int d : dist)
+        cout<<d<<" ";
+    cout<<endl;
+    
+}*/
+
 void shortestPath(vector<pair<int,int>> graph[], int n, vector<int>& parent, vector<int>& dist,int src, int dest){
     queue<int> q;
     q.push(src);
