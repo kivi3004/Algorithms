@@ -25,9 +25,6 @@ bool shortestPath(vector<int> graph[], int n, vector<int>& parent, int src, int 
 void shortestRoute(vector<int> graph[], int n, int src, int dest){
     vector<int> parent(n,-1);
     if(shortestPath(graph, n, parent, src, dest)){
-        for(int p : parent)
-            cout<<p<<" ";
-        cout<<endl;
         int temp = dest;
         cout<<"Path between "<<src<<" and "<<dest<<" : ";
         vector<int> path;
